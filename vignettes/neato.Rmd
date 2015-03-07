@@ -1,0 +1,62 @@
+---
+title: "neato"
+author: "Nicholas Tierney"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r setup, include = F}
+
+library(dplyr)
+library(knitr)
+library(rpart)
+
+```
+
+
+# Introduction
+
+This is the draft vignette for the package neato.
+
+It's probably going to have a bunch of different sections, like `plotting`, and `tables` and that sort of thing.
+
+# Using `importance_table`
+
+So here's the go for importance table, you want to get the variable importance information, and here's how you can do it.
+
+First, let's take an rpart fitted object
+```{r}
+
+fit.rpart <- rpart(Kyphosis ~ Age + Number + Start, data = kyphosis)
+
+```
+
+And let's turn it into an importance table
+
+```{r}
+
+importance_table(fit.rpart)
+
+```
+
+You can even use the pipe operator `%>%`
+
+```{r}
+
+fit.rpart %>% importance_table
+
+```
+
+And then if you want you can make a table using the `kable` function from `knitr`
+
+```{r}
+
+fit.rpart %>% importance_table %>% kable
+
+```
+
+

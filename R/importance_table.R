@@ -18,7 +18,12 @@
 #'
 #'  \code{rpart} object
 #' fit.rpart <- rpart(Kyphosis ~ Age + Number + Start, data = kyphosis)
+#'
 #' importance_table(fit.rpart)
+#'
+#' # you can even use piping
+#'
+#' importance_table %>% fit.rpart
 #'
 #' \code{gbm.step} object
 #' fit.gbm.step <- gbm.step(data = iris,
