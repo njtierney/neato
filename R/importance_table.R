@@ -43,15 +43,12 @@
 #'
 #' @seealso \url{https://github.com/dgrtwo/broom}
 #'
-#'
-#'
-#'
 importance_table <- function(x){ # rpart or gbm object
 
 #========
 # rpart
 #========
-  if (class(x) == rpart){
+  if (class(x) == "rpart") {
     # make a kable plot for the variable importance from the CART model
 
     x$variable.importance %>%
@@ -65,7 +62,7 @@ importance_table <- function(x){ # rpart or gbm object
 # gbm
 #=====
 
-  } else if (class(x) == gbm) {
+  } else if (class(x) == "gbm") {
 
       x$contributions %>%
         # make it a dataframe
