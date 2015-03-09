@@ -11,5 +11,6 @@ Depends: R (>= 3.1.1)
 License: MIT
 LazyData: TRUE
 Imports: dplyr (>= 0.4.0)
-Suggests: knitr
+Suggests: knitr,
+    testthat
 VignetteBuilder: knitr
