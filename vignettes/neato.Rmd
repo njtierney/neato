@@ -39,7 +39,7 @@ And let's turn it into an importance table
 
 ```{r}
 
-importance_table(fit.rpart)
+# importance_table(fit.rpart)
 
 ```
 
@@ -47,7 +47,7 @@ You can even use the pipe operator `%>%`
 
 ```{r}
 
-fit.rpart %>% importance_table
+# fit.rpart %>% importance_table
 
 ```
 
@@ -55,7 +55,7 @@ And then if you want you can make a table using the `kable` function from `knitr
 
 ```{r}
 
-fit.rpart %>% importance_table %>% kable
+# fit.rpart %>% importance_table %>% kable
 
 ```
 
