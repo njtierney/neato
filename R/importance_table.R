@@ -23,7 +23,7 @@
 #'
 #' # you can even use piping
 #'
-#' importance_table %>% fit.rpart
+#' fit.rpart %>% importance_table
 #'
 #' \code{gbm.step} object
 #' fit.gbm.step <- gbm.step(data = iris,
@@ -35,6 +35,9 @@
 #'                          bag.fraction = 0.5)
 #'
 #' importance_table(fit.gbm.step)
+#'
+#' # with piping
+#' fit.gbm.step %>% importance_table
 #'
 #' Unfortunately it cannot yet run a \code{gbm} object:
 #' \dontrun{
@@ -48,7 +51,8 @@
 #'
 #' @seealso \url{https://github.com/dgrtwo/broom}
 #'
-importance_table <- function(x){ # rpart or gbm object
+#' @export
+importance_table <- function(x){
 
 #========
 # rpart
@@ -56,12 +60,17 @@ importance_table <- function(x){ # rpart or gbm object
   if (class(x) == "rpart") {
     # make a kable plot for the variable importance from the CART model
 
-    x$variable.importance %>%
+    x <-
+      x$variable.importance %>%
       data.frame(variable = names(x$variable.importance),
                  importance = as.vector(x$variable.importance),
                  row.names = NULL) %>%
       select(variable,
              importance)
+
+    res <- x
+    class(res) <- c("imp_tbl", class(res))
+    return(res)
 
 #=====
 # gbm
@@ -69,12 +78,17 @@ importance_table <- function(x){ # rpart or gbm object
 
   } else if (class(x) == "gbm") {
 
+    x <-
       x$contributions %>%
         # make it a dataframe
         as_data_frame %>%
         # rename the variables
         rename(variable = var,
-               relative.imp = rel.inf)
+               importance = rel.inf)
+
+    res <- x
+    class(res) <- c("imp_tbl", class(res))
+    return(res)
 
 #=============
 # error catch
