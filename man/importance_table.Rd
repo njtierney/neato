@@ -8,12 +8,57 @@ importance_table(x)
 }
 \arguments{
 \item{x}{An rpart of gbm.step object to be turned into a tidy dataframe
-    containing importance values
-
-This currently only works for rpart and gbm.step functions
-need to add some features}
+    containing importance values}
+}
+\value{
+A data_frame object made with the intention of turning it into a
+    text table with `knitr` or `xtable`
 }
 \description{
-A function that turns the variable importance of BRT into a dataframe
+\code{importance_table} returns a data_frame of variable importance
+}
+\details{
+This currently only works for rpart and gbm.step functions. In the
+future more features will be added so that it works for many
+decision trees
+}
+\examples{
+# turn a fitted object into a data_frame
+
+ \\code{rpart} object
+fit.rpart <- rpart(Kyphosis ~ Age + Number + Start, data = kyphosis)
+
+importance_table(fit.rpart)
+
+# you can even use piping
+
+fit.rpart \%>\% importance_table
+
+\\code{gbm.step} object
+fit.gbm.step <- gbm.step(data = iris,
+                         gbm.x = c(1:3),
+                         gbm.y = 4,
+                         tree.complexity = 1,
+                         family = "gaussian",
+                         learning.rate = 0.01,
+                         bag.fraction = 0.5)
+
+importance_table(fit.gbm.step)
+
+# with piping
+fit.gbm.step \%>\% importance_table
+
+Unfortunately it cannot yet run a \\code{gbm} object:
+\dontrun{
+
+gbm.fit <- gbm(Sepal.Width ~ .,
+               distribution = "gaussian",
+               data = iris)
+
+importance_table(gbm.fit)
+}
+}
+\seealso{
+\url{https://github.com/dgrtwo/broom}
 }
 
