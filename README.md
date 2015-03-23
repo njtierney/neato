@@ -33,9 +33,16 @@ devtools::install_github("tierneyn/neato")
 
 # Future work
 
-In the future this work will be expanded to include other decision trees, and might even be made into a seperate decision tree tool package.
-I don't know what I would call it, but probably some sort of tree-related pun, like `secateurs` or something. 
-Although that is hard to spell, so maybe something else like `topiary`
+## Decision Trees
 
+I have a great desire to make the decision tree specific functions work for all decision tree packages, as I feel like there are certain things that you want to do when you're looking at decision trees, and that is:
 
+- To see what variables are most important
+- To see how variables and their interactions influence prediction
 
+And the plots often provided with the packages give you what you need, but they aren't immediately of publishable quality. And I'd like to change that.
+
+I'm also particularly frustrated by the standard plots used in the `gbm.step` source code written by Elith et al., and I would like to, in the very near future, create some standard ggplots of their existing stuff. So I guess that's at the top of the list for now.
+
+In the future this work will be expanded to include other decision trees, and might even be made into a seperate decision tree tool package. I don't know what I would call it, but probably some sort of tree-related pun, like `secateurs` or something. 
+Although that is hard to spell, so maybe something else like `topiary` or `clippers`. I am open to suggestions!
