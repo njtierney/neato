@@ -34,8 +34,8 @@ devtools::install_github("tierneyn/neato")
 # Future work
 
 In the future this work will be expanded to include other decision trees, and might even be made into a seperate decision tree tool package.
-I don't know what I would call it, but probably some sort of tree-related pun, like "secateurs" or something. 
-Although that is hard to spell, so maybe something else.
+I don't know what I would call it, but probably some sort of tree-related pun, like `secateurs` or something. 
+Although that is hard to spell, so maybe something else like `topiary`
 
 
 
