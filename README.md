@@ -4,9 +4,9 @@ This is a set of functions that I use somewhat regularly.
 
 Current functions are:
 
-- importance_table
-- importance_plot
-- imputation_plot
+- `importance_table`
+- `importance_plot`
+- `imputation_plot`
 
 **importance_table**
 
