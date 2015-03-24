@@ -1,8 +1,12 @@
 # neato
 
-This is a set of functions that I use somewhat regularly.
+This is a set of functions that I use somewhat regularly. These are currently to do with decision trees and multiple imputation.
 
-Current functions are:
+My general workflow in R is to make a function after I copy and paste some code more than once. Sometimes I find myself using these functions more than once, across different papers. So I decided to make an R package with a few of these functions, called “neato”. I called it this in the hope that one day someone will find one of these functions and say: “neato!”, because hey, it’s pretty neat!
+
+I hope that the more I write into this package, the better I’ll get at writing R packages and the more I can contribute to the R community. I’d also like to thank people like Hadley Wickham and Hilary Parker for writing materials to inspire me to contribute to R.
+
+Current functions in `neato` are:
 
 - `importance_table`
 - `importance_plot`
