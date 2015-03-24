@@ -5,23 +5,24 @@ This is a set of functions that I use somewhat regularly.
 Current functions are:
 
 - importance_table
+- importance_plot
+- imputation_plot
+
+**importance_table**
 
 Create an table of the importance values for `rpart` or `gbm.step` class
 
-- importance_plot
+**importance_plot**
 
 Create a plot of the importance values for `rpart` or `gbm.step` class
 
-- imputation_plot
+**imputation_plot**
 
-Create a ggplot plot of a given list of variables for an imputed object of class "mids" from the `mice` package.
+Create a ggplot of a given list of variables for an imputed object of class "mids" from the `mice` package.
 
 # How to install
 
 ```
-if (packageVersion("devtools") < 1.6) {
-  install.packages("devtools")
-}
 devtools::install_github("tierneyn/neato")
 ```
 
@@ -29,7 +30,7 @@ devtools::install_github("tierneyn/neato")
 
 1. Currently the packages work but might throw errors if certain packages aren't loaded.
 
-2. Does not work for gbm, only gbm.step
+2. Does not work for gbm, only gbm.step. Get the source code for gbm.step [here](http://onlinelibrary.wiley.com/doi/10.1111/j.1365-2656.2008.01390.x/full)
 
 # Future work
 
