@@ -12,6 +12,7 @@
 #' @return A data_frame object made with the intention of turning it into a
 #'     text table with `knitr` or `xtable`
 #'
+#'
 #' @examples
 #'
 #' # turn a fitted object into a data_frame
@@ -51,6 +52,8 @@
 #'
 #' @seealso \url{https://github.com/dgrtwo/broom}
 #'
+#' @import dplyr
+#'
 #' @export
 importance_table <- function(x){
 
@@ -60,6 +63,12 @@ importance_table <- function(x){
   if (class(x) == "rpart") {
     # make a kable plot for the variable importance from the CART model
 
+    # Some trees are stumps, we need to skip those that are NULL (stumps)
+    # so here we say, "If variable importance is NOT NULL, do the following"
+    # Another option would be to only include those models which are not null.
+
+    if (is.null(x$variable.importance) == FALSE) {
+
     x <-
       x$variable.importance %>%
       data.frame(variable = names(x$variable.importance),
@@ -67,6 +76,15 @@ importance_table <- function(x){
                  row.names = NULL) %>%
       select(variable,
              importance)
+
+    } else {
+
+      # if rpart_frame just contains a decision stump, make NULL datasets.
+
+      x <- data.frame(variable = NULL,
+                      importance = NULL,
+                      row.names = NULL)
+    } # end else
 
     res <- x
     class(res) <- c("imp_tbl", class(res))
