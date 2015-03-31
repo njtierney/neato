@@ -31,13 +31,6 @@ imp <- mice(nhanes)
                             include.data = F)
 
    # show the density
-   plot1$density
-
-Required packages
-
-dplyr
-reshape2
-mice
-ggplot2
+   plot1
 }
 

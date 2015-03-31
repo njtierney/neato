@@ -10,7 +10,13 @@ Description: This package is a collection of function I have written
 Depends: R (>= 3.1.1)
 License: MIT
 LazyData: TRUE
-Imports: dplyr (>= 0.4.0)
+Imports: 
+    dplyr,
+    mice,
+    ggplot2,
+    tidyr,
+    reshape2,
+    magrittr
 Suggests: knitr,
     testthat
 VignetteBuilder: knitr

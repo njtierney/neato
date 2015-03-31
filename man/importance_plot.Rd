@@ -30,12 +30,5 @@ importance_plot(fit.rpart)
 # you can even use piping
 
 fit.rpart \%>\% importance_plot
-
-Required packages
-
-dplyr
-reshape2
-mice
-ggplot2
 }
 

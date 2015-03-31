@@ -22,14 +22,9 @@
 #'                             include.data = F)
 #'
 #'    # show the density
-#'    plot1$density
+#'    plot1
 #'
-#' Required packages
-#'
-#' dplyr
-#' reshape2
-#' mice
-#' ggplot2
+#' @import dplyr
 #'
 #' @export
 imputation_plot <- function(mice.object,
@@ -58,7 +53,7 @@ imputation_plot <- function(mice.object,
       # then make a column called `m`, and make this a factor
       mutate(m = as.factor(i)) %>%
       # then reshape the data according to the ID var being `m`
-      melt(id.vars = "m")
+      reshape2::melt(id.vars = "m")
 
   }
 
@@ -75,13 +70,13 @@ imputation_plot <- function(mice.object,
   #===========
 
   # do a density plot
-  ggplot(data = dat.combine,
-         aes(x = value,
+  ggplot2::ggplot(data = dat.combine,
+         ggplot2::aes(x = value,
              fill = m)) +
-    geom_density(alpha = (1/m)) +  # set alpha to be a fraction of m
-    facet_wrap(~variable,         # facet by variable
+    ggplot2::geom_density(alpha = (1/m)) +  # set alpha to be a fraction of m
+    ggplot2::facet_wrap(~variable,         # facet by variable
                scales = "free") +
-    theme(legend.position="none")
+    ggplot2::theme(legend.position="none")
 
   # want to include the original data in the plot?
   } else if (include.data ==T){
@@ -96,42 +91,41 @@ imputation_plot <- function(mice.object,
       mice.object$data %>%
       select(one_of(vars)) %>%
       mutate(m = as.factor(0)) %>%
-      melt(id.vars = "m")
+      reshape2::melt(id.vars = "m")
 
     ## plot the data
-    ggplot(data = data.imputed.melt,
-           aes(x = value,
+    ggplot2::ggplot(data = data.imputed.melt,
+           ggplot2::aes(x = value,
                fill = m)) +
-      geom_density(data = data.melt,
+      ggplot2::geom_density(data = data.melt,
                    aes(x = value),
                    fill = "black") +
-      geom_density(alpha = (1/6)) +
-      facet_wrap(~variable,
+      ggplot2::geom_density(alpha = (1/6)) +
+      ggplot2::facet_wrap(~variable,
                  scales = "free") +
-      theme(legend.position="none")
+    theme(legend.position="none")
 
-  } # end if-else sattement
+
+} # end if statement
 
 } # end function
 
-## future work, plot histograms and other plots
-
-#     ############
-#     # Histogram
-#     ############
-#       # as a histogram with counts
-#       histogram <- ggplot(data = dat.combine,
-#                           aes(x = value,
-#                               fill = m)) +
-#         # plot a histogram with binwidth 1, a transparency of set to the number
-#         # of imputations
-#         # position is set to identity so that it doesn't stack the plots
-#         geom_histogram(binwidth = 1,
-#                        alpha = (1/m),
-#                        position = "identity") +
-#         # facet by variable, set the scales to be free
-#         facet_wrap(~variable,
-#                    scales = "free"
-#   # this function will return these values, which you can call - see example
-#   return(list(histogram,
-#               density))
+#' future work, plot histograms and other plots
+#'     ############
+#'     # Histogram
+#'     ############
+#'       # as a histogram with counts
+#'       histogram <- ggplot(data = dat.combine,
+#'                           aes(x = value,
+#'                               fill = m)) +
+#'         # plot a histogram with binwidth 1, a transparency of set to the number
+#'         # of imputations
+#'         # position is set to identity so that it doesn't stack the plots
+#'         geom_histogram(binwidth = 1,
+#'                        alpha = (1/m),
+#'                        position = "identity") +
+#'         # facet by variable, set the scales to be free
+#'         facet_wrap(~variable,
+#'                    scales = "free"
+#' this function will return these values, which you can call - see example
+#' # return(list(histogram, density))

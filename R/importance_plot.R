@@ -21,12 +21,7 @@
 #'
 #' fit.rpart %>% importance_plot
 #'
-#' Required packages
-#'
-#' dplyr
-#' reshape2
-#' mice
-#' ggplot2
+#' @import dplyr
 #'
 #' @export
 importance_plot <- function(x){
@@ -43,10 +38,10 @@ importance_plot <- function(x){
                 variable=reorder(variable,
                                  importance)) %>%
       # plot them!
-      ggplot(data = .,
-             aes(x = variable,
+      ggplot2::ggplot(data = .,
+             ggplot2::aes(x = variable,
                  y = importance)) +
-      geom_point()
+      ggplot2::geom_point()
 
   } else if (class(x) != "imp_tbl"){
 
@@ -57,10 +52,10 @@ importance_plot <- function(x){
               variable=reorder(variable,
                                importance)) %>%
     # plot them!
-    ggplot(data = .,
-           aes(x = variable,
+    ggplot2::ggplot(data = .,
+           ggplot2::aes(x = variable,
                y = importance)) +
-    geom_point()
+    ggplot2::geom_point()
 
   } # end ifelse
 

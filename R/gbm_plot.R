@@ -11,6 +11,7 @@
 #' future more features will be added so that it works for many
 #' decision trees.
 #'
+#'
 #' @param gbm.step.oject A gbm.step object to be plotted
 #'
 #' @return A ggplot2 plot
@@ -41,45 +42,46 @@
 #' plot_gbm(gbm.fit)
 #' }
 #'
-#' @seealso \url{https://github.com/dgrtwo/broom}
+#' @import dplyr
 #'
 #' @export
 gbm_plot <- function(x){
 
   # make a list to hold the data
-  df.box <- list("vector", length(gbm.step.object$var.names))
+  df_box <- list("vector", length(gbm.step.object$var.names))
 
   # make a loop to go through all the data and get the predictions
   for (i in 1:length(gbm.step.object$var.names)){
 
     # Get the
 
-    response.matrix <- plot.gbm(gbm.step.object,
+    response_matrix <- plot.gbm(gbm.step.object,
                                 i.var = i,
                                 n.trees = 500,
                                 return.grid = TRUE)
 
-    df.box[[i]] <- data.frame(value = response.matrix[ ,1],
-                              fitted_function = response.matrix[ ,2] -
-                                mean(response.matrix[ ,2])) %>%
+    df_box[[i]] <- data.frame(value = response_matrix[ ,1],
+                              fitted_function = response_matrix[ ,2] -
+                                mean(response_matrix[ ,2])) %>%
       mutate(variable = gbm.step.object$var.names[i])
 
   }
 
-  df <- bind_rows(df.box)
+  df <- bind_rows(df_box)
 
   ## end of loop
 
-  gbm.pred.plot <- ggplot(data = df,
-                          aes(x = value,
-                              y = fitted_function)) +
-    geom_line() +
-    facet_wrap(~variable,
+  gbm_pred_plot <-
+    ggplot2::ggplot(data = df,
+           ggplot2::aes(x = value,
+               y = fitted_function)) +
+    ggplot2::geom_line() +
+    ggplot2::facet_wrap(~variable,
                scales = "free_x") +
-    geom_hline(yintercept = 0,
+    ggplot2::geom_hline(yintercept = 0,
                colour = "red")
 
-  return(gbm.pred.plot)
+  return(gbm_pred_plot)
 
 }
 
