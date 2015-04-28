@@ -39,8 +39,8 @@ importance_plot <- function(x){
                                  importance)) %>%
       # plot them!
       ggplot2::ggplot(data = .,
-             ggplot2::aes(x = variable,
-                 y = importance)) +
+             ggplot2::aes(x = importance,
+                          y = variable)) +
       ggplot2::geom_point()
 
   } else if (class(x) != "imp_tbl"){
@@ -53,11 +53,10 @@ importance_plot <- function(x){
                                importance)) %>%
     # plot them!
     ggplot2::ggplot(data = .,
-           ggplot2::aes(x = variable,
-               y = importance)) +
+           ggplot2::aes(x = importance,
+                        y = variable)) +
     ggplot2::geom_point()
 
   } # end ifelse
 
 } # end function
-
