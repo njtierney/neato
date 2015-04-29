@@ -50,6 +50,16 @@
 #' importance_table(gbm.fit)
 #' }
 #'
+#' \code{randomForest} object
+#'     set.seed(1)
+#'     data(iris)
+#'     iris.rf <- randomForest(Species ~ ., iris,
+#'                             proximity=TRUE,
+#'                             keep.forest=FALSE)
+#'
+#' importance_table(iris.rf)
+#'
+#'
 #' @seealso \url{https://github.com/dgrtwo/broom}
 #'
 #' @import dplyr
@@ -60,7 +70,7 @@ importance_table <- function(x){
 #========
 # rpart
 #========
-  if (class(x) == "rpart") {
+  if ("rpart" %in% class(x)) {
     # make a kable plot for the variable importance from the CART model
 
     # Some trees are stumps, we need to skip those that are NULL (stumps)
@@ -94,7 +104,7 @@ importance_table <- function(x){
 # gbm
 #=====
 
-  } else if (class(x) == "gbm") {
+  } else if ("gbm" %in% class(x)) {
 
     x <-
       x$contributions %>%
@@ -108,10 +118,33 @@ importance_table <- function(x){
     class(res) <- c("imp_tbl", class(res))
     return(res)
 
+#================
+# random forests
+#================
+
+    } else if ("randomForest" %in% class(x)) {
+
+
+      # get the names of the variables used
+      variable <- importance(x) %>% row.names
+
+      # get their importance values
+      importance <- importance(x) %>% as.data.frame %>% .[ ,1]
+
+      # make a dataframe
+      x <- data_frame(variable = variable,
+                      importance = importance)
+
+      res <- x
+      class(res) <- c("imp_tbl", class(res))
+      return(res)
+
+
 #=============
 # error catch
 #=============
 
-    } else stop("x is not an rpart or gbm.step type object")
+    } else warning(paste(class(x),
+                         "is not of an rpart, gbm.step, or randomForest object"))
 
 } # end function
