@@ -126,14 +126,13 @@ importance_table <- function(x){
 
 
       # get the names of the variables used
-      variable <- importance(x) %>% row.names
+      variable <- importance(x) %>% row.names %>% data.frame(variable = .)
 
-      # get their importance values
-      importance <- importance(x) %>% as.data.frame %>% .[ ,1]
+      pt1 <- importance(x) %>%
+        as.data.frame(row.names = F) %>%
+        as_data_frame
 
-      # make a dataframe
-      x <- data_frame(variable = variable,
-                      importance = importance)
+      x <- bind_cols(variable, pt1) %>% as_data_frame
 
       res <- x
       class(res) <- c("imp_tbl", class(res))
