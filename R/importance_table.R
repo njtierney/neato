@@ -126,13 +126,17 @@ importance_table <- function(x){
 
 
       # get the names of the variables used
-      variable <- importance(x) %>% row.names %>% data.frame(variable = .)
+      variable <- importance(x) %>%
+        row.names %>%
+        data.frame(variable = .)
 
       pt1 <- importance(x) %>%
         as.data.frame(row.names = F) %>%
         as_data_frame
 
-      x <- bind_cols(variable, pt1) %>% as_data_frame
+      x <- bind_cols(variable,
+                     pt1) %>%
+        as_data_frame
 
       res <- x
       class(res) <- c("imp_tbl", class(res))
@@ -147,3 +151,9 @@ importance_table <- function(x){
                          "is not of an rpart, gbm.step, or randomForest object"))
 
 } # end function
+
+# future code for gbm objects, not gbm.step...
+# sum.mod %>%
+#   as_data_frame %>%
+#   rename(variable = var,
+#          influence = rel.inf)
