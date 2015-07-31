@@ -27,7 +27,7 @@
 #'                          learning.rate = 0.01,
 #'                          bag.fraction = 0.5)
 #'
-#' plot_gbm(fit.gbm.step)
+#' gbm_plot(fit.gbm.step)
 #'
 #' # with piping
 #' fit.gbm.step %>% plot_gbm.step
@@ -39,7 +39,7 @@
 #'                distribution = "gaussian",
 #'                data = iris)
 #'
-#' plot_gbm(gbm.fit)
+#' gbm_plot(gbm.fit)
 #' }
 #'
 #' @import dplyr
@@ -48,14 +48,14 @@
 gbm_plot <- function(x){
 
   # make a list to hold the data
-  df_box <- list("vector", length(gbm.step.object$var.names))
+  df_box <- list("vector", length(x$var.names))
 
   # make a loop to go through all the data and get the predictions
-  for (i in 1:length(gbm.step.object$var.names)){
+  for (i in 1:length(x$var.names)){
 
     # Get the
 
-    response_matrix <- plot.gbm(gbm.step.object,
+    response_matrix <- plot.gbm(x,
                                 i.var = i,
                                 n.trees = 500,
                                 return.grid = TRUE)
@@ -63,7 +63,7 @@ gbm_plot <- function(x){
     df_box[[i]] <- data.frame(value = response_matrix[ ,1],
                               fitted_function = response_matrix[ ,2] -
                                 mean(response_matrix[ ,2])) %>%
-      mutate(variable = gbm.step.object$var.names[i])
+      mutate(variable = x$var.names[i])
 
   }
 
