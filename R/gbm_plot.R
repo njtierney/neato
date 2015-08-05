@@ -14,6 +14,7 @@
 #'
 #' @param gbm.step.oject A gbm.step object to be plotted
 #'
+#'
 #' @return A ggplot2 plot
 #'
 #' @examples
@@ -43,6 +44,7 @@
 #' }
 #'
 #' @import dplyr
+#' @import gbm
 #'
 #' @export
 gbm_plot <- function(x){
@@ -60,14 +62,22 @@ gbm_plot <- function(x){
                                 n.trees = 500,
                                 return.grid = TRUE)
 
-    df_box[[i]] <- data.frame(value = response_matrix[ ,1],
-                              fitted_function = response_matrix[ ,2] -
-                                mean(response_matrix[ ,2])) %>%
-      mutate(variable = x$var.names[i])
+#     df_box[[i]] <- data.frame(value = response_matrix[ ,1],
+#                               fitted_function = response_matrix[ ,2] -
+#                                 mean(response_matrix[ ,2])) %>%
+#       mutate(variable = x$var.names[i])
+
+# not mean centered
+
+      df_box[[i]] <- data.frame(value = response_matrix[ , 1],
+                                fitted_function = response_matrix[ , 2]) %>%
+        mutate(variable = x$var.names[i])
 
   }
 
   df <- bind_rows(df_box)
+
+  df
 
   ## end of loop
 
