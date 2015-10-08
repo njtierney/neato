@@ -87,9 +87,9 @@ gbm_plot <- function(x){
                y = fitted_function)) +
     ggplot2::geom_line() +
     ggplot2::facet_wrap(~variable,
-               scales = "free_x") +
-    ggplot2::geom_hline(yintercept = 0,
-               colour = "red")
+               scales = "free_x")
+#     ggplot2::geom_hline(yintercept = 0,
+#                colour = "red")
 
   return(gbm_pred_plot)
 
