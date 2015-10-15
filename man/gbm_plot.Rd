@@ -34,7 +34,7 @@ fit.gbm.step <- gbm.step(data = iris,
                          learning.rate = 0.01,
                          bag.fraction = 0.5)
 
-plot_gbm(fit.gbm.step)
+gbm_plot(fit.gbm.step)
 
 # with piping
 fit.gbm.step \%>\% plot_gbm.step
@@ -46,7 +46,7 @@ gbm.fit <- gbm(Sepal.Width ~ .,
                distribution = "gaussian",
                data = iris)
 
-plot_gbm(gbm.fit)
+gbm_plot(gbm.fit)
 }
 }
 

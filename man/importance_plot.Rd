@@ -30,5 +30,22 @@ importance_plot(fit.rpart)
 # you can even use piping
 
 fit.rpart \%>\% importance_plot
+
+ \\code{randomForest} object
+
+ set.seed(131)
+  ozone.rf <- randomForest(Ozone ~ ., data=airquality, mtry=3,
+                           importance=TRUE, na.action=na.omit)
+  print(ozone.rf)
+  ## Show "importance" of variables: higher value mean more important:
+  importance(ozone.rf)
+
+  ## use importance_table
+
+  importance_table(ozone.rf)
+
+  # now plot it
+
+  importance_plot(ozone.rf)
 }
 

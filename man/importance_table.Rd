@@ -4,7 +4,7 @@
 \alias{importance_table}
 \title{importance_table}
 \usage{
-importance_table(x)
+importance_table(x, ...)
 }
 \arguments{
 \item{x}{An rpart of gbm.step object to be turned into a tidy dataframe
@@ -57,6 +57,15 @@ gbm.fit <- gbm(Sepal.Width ~ .,
 
 importance_table(gbm.fit)
 }
+
+\\code{randomForest} object
+    set.seed(1)
+    data(iris)
+    iris.rf <- randomForest(Species ~ ., iris,
+                            proximity=TRUE,
+                            keep.forest=FALSE)
+
+importance_table(iris.rf)
 }
 \seealso{
 \url{https://github.com/dgrtwo/broom}
