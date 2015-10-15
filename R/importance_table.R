@@ -63,15 +63,27 @@
 #' @seealso \url{https://github.com/dgrtwo/broom}
 #'
 #' @import dplyr
+#' @import magrittr
 #'
 #' @export
-importance_table <- function(x){
+
+#=======================
+# constructor function
+#=======================
+
+importance_table <- function(x, ...){
+
+  UseMethod("importance_table", x)
+
+}
+
 
 #========
 # rpart
 #========
-  if ("rpart" %in% class(x)) {
-    # make a kable plot for the variable importance from the CART model
+
+
+importance_table.rpart <- function(x, ...){
 
     # Some trees are stumps, we need to skip those that are NULL (stumps)
     # so here we say, "If variable importance is NOT NULL, do the following"
@@ -100,11 +112,12 @@ importance_table <- function(x){
     class(res) <- c("imp_tbl", class(res))
     return(res)
 
+}
 #=====
 # gbm
 #=====
 
-  } else if ("gbm" %in% class(x)) {
+importance_table.gbm <- function(x, ...){
 
     x <-
       x$contributions %>%
@@ -117,13 +130,13 @@ importance_table <- function(x){
     res <- x
     class(res) <- c("imp_tbl", class(res))
     return(res)
-
+}
 #================
 # random forests
 #================
 
-    } else if ("randomForest" %in% class(x)) {
 
+importance_table.randomForest <- function(x, ...){
 
       # get the names of the variables used
       variable <- importance(x) %>%
@@ -143,14 +156,19 @@ importance_table <- function(x){
       return(res)
 
 
+}
+
 #=============
 # error catch
 #=============
 
-    } else warning(paste(class(x),
-                         "is not of an rpart, gbm.step, or randomForest object"))
+importance_table.default <- function(x, ...){
+  warning(
+    paste(class(x),
+          "is not of an rpart, gbm.step, or randomForest object")
+    )
 
-} # end function
+}
 
 # future code for gbm objects, not gbm.step...
 # sum.mod %>%
