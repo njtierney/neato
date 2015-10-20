@@ -63,26 +63,26 @@
 #' @seealso \url{https://github.com/dgrtwo/broom}
 #'
 #' @import dplyr
-#' @import magrittr
 #'
 #' @export
+importance_table <- function(x, ...) UseMethod("importance_table")
 
-#=======================
-# constructor function
-#=======================
 
-importance_table <- function(x, ...){
+#' @export
+importance_table.NULL <- function(x,...) NULL
 
-  UseMethod("importance_table", x)
+#' @export
+importance_table.default <- function(x,...) {
 
-}
+    stop("alas, importance_table does not know how to deal with data of class ", class(x), call. = FALSE)
 
+  }
 
 #========
 # rpart
 #========
 
-
+#' @export
 importance_table.rpart <- function(x, ...){
 
     # Some trees are stumps, we need to skip those that are NULL (stumps)
@@ -117,6 +117,7 @@ importance_table.rpart <- function(x, ...){
 # gbm
 #=====
 
+#' @export
 importance_table.gbm <- function(x, ...){
 
     x <-
@@ -135,7 +136,7 @@ importance_table.gbm <- function(x, ...){
 # random forests
 #================
 
-
+#' @export
 importance_table.randomForest <- function(x, ...){
 
       # get the names of the variables used
@@ -158,20 +159,18 @@ importance_table.randomForest <- function(x, ...){
 
 }
 
-#=============
-# error catch
-#=============
-
-importance_table.default <- function(x, ...){
-  warning(
-    paste(class(x),
-          "is not of an rpart, gbm.step, or randomForest object")
-    )
-
-}
 
 # future code for gbm objects, not gbm.step...
-# sum.mod %>%
-#   as_data_frame %>%
-#   rename(variable = var,
-#          influence = rel.inf)
+## new method for gbm to get importance value for .gbm methods (not gbm.step)
+#
+# view_importance <- function(x){
+#
+#   relative.influence(x) %>%
+#     as.data.frame %>%
+#     data.frame(importance = .[,1],
+#                variable = row.names(.),
+#                row.names = NULL) %>%
+#     select(variable,
+#            importance) %>%
+#     arrange(-importance)
+#

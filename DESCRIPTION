@@ -1,7 +1,7 @@
 Package: neato
 Type: Package
 Title: Various Useful Functions That I Repeatedly Use
-Version: 0.0.0.9001
+Version: 0.0.1.9001
 Date: 2015-03-06
 Authors@R: person("Nicholas", "Tierney", email = "nicholas.tierney@gmail.com",
   role = c("aut", "cre"))
@@ -10,13 +10,12 @@ Description: This package is a collection of function I have written
 Depends: R (>= 3.1.1)
 License: MIT
 LazyData: TRUE
-Imports: 
+Imports:
     dplyr,
     mice,
     ggplot2,
     tidyr,
     reshape2,
-    magrittr
 Suggests: knitr,
     testthat
 VignetteBuilder: knitr

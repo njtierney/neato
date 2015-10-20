@@ -32,6 +32,7 @@ rss <- function(x){
 #' Classification and Regression Tree #
 #=====================================#
 
+#' @export
 rss.rpart <- function(x){
 
   sum((residuals(x)^2))
@@ -41,6 +42,8 @@ rss.rpart <- function(x){
 #==========================#
 #' Boosted Regression Tree #
 #==========================#
+
+#' @export
 rss.gbm <- function(x){
 
   sum(x$residuals^2)
@@ -49,6 +52,7 @@ rss.gbm <- function(x){
 #================#
 #' Random Forest #
 #================#
+#' @export
 rss.randomForest <- function(x){
 
   res <- x$y - x$predicted
