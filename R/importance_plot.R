@@ -58,7 +58,9 @@ importance_plot <- function(x){
       ggplot2::ggplot(data = .,
              ggplot2::aes(x = importance,
                           y = variable)) +
-      ggplot2::geom_point()
+      ggplot2::geom_point() +
+      ggplot2::labs(x = "Variables",
+                    y = "Importance Score")
 
   } else if ("randomForest" %in% class(x)) {
 
