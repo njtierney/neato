@@ -10,10 +10,10 @@ rss(x)
 \item{x}{A fitted decision tree model - either `rpart`, `gbm` or `randomForest`.}
 }
 \value{
-The Residuals Sums of Squares (RSS) $\sum_i^n(Y_i - \hat(Y))^2$ for the models `rpart`, `gbm.step`, and `randomForest`.
+The Residuals Sums of Squares (RSS)  for the models `rpart`, `gbm.step`, and `randomForest`.
 }
 \description{
-\description A function that gives returns the RSS of a decision tree model.
+A function that gives returns the RSS of a decision tree model.
 }
 \note{
 when using the `caret` package, be sure to select `model$finalModel` when entering it into the `rss` function. Also note that the RSS only works for continuous variables.
