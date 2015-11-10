@@ -7,7 +7,8 @@ Authors@R: person("Nicholas", "Tierney", email = "nicholas.tierney@gmail.com",
   role = c("aut", "cre"))
 Description: This package is a collection of function I have written
     that I think are useful
-Depends: R (>= 3.1.1)
+Depends:
+    R (>= 3.1.1)
 License: MIT
 LazyData: TRUE
 Imports:
@@ -16,6 +17,8 @@ Imports:
     ggplot2,
     tidyr,
     reshape2,
-Suggests: knitr,
+Suggests:
+    knitr,
     testthat
 VignetteBuilder: knitr
+RoxygenNote: 5.0.0
