@@ -17,6 +17,7 @@ Imports:
     ggplot2,
     tidyr,
     reshape2,
+    ggplot2
 Suggests:
     knitr,
     testthat
