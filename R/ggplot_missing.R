@@ -22,7 +22,7 @@ ggplot_missing <- function(x){
                y = Var1)) +
     geom_raster(aes(fill = value)) +
     scale_fill_grey(name = "",
-                    labels = c("Present","NA")) +
+                    labels = c("Present","Missing")) +
     theme_minimal() +
     theme(axis.text.x  = element_text(angle=45, vjust=0.5)) +
     labs(x = "Variables in Dataset",
