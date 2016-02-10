@@ -69,7 +69,7 @@ grid_partial_plot <- function(x,
                    linetype = "dashed",
                    alpha = 0.75) +
         labs(x = paste("Variable Values for", var_lab),
-             y = "Model Predicted Values")
+             y = "Predicted")
 
       # otherwise, they are continuous, and make it a geom_line()
     } else {
@@ -85,7 +85,7 @@ grid_partial_plot <- function(x,
                    linetype = "dashed",
                    alpha = 0.75) +
         labs(x = paste("Variable Values for", var_lab),
-             y = "Model Predicted Values")
+             y = "Values")
     } # end else
 
   } # close loop
