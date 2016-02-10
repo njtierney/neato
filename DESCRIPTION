@@ -5,22 +5,22 @@ Version: 0.0.1.9001
 Date: 2015-03-06
 Authors@R: person("Nicholas", "Tierney", email = "nicholas.tierney@gmail.com",
   role = c("aut", "cre"))
-Description: This package is a collection of function I have written
-    that I think are useful
-Depends: 
+Description: This package is a collection of function I have written that I think are useful.
+Depends:
     R (>= 3.1.1)
-License: MIT
+License: MIT + file LICENSE
 LazyData: TRUE
-Imports: 
+Imports:
     dplyr,
-    mice,
-    ggplot2,
-    tidyr,
     reshape2,
     ggplot2,
+    gbm,
+    tidyr,
     gridExtra
-Suggests: 
+Suggests:
     knitr,
     testthat
 VignetteBuilder: knitr
 RoxygenNote: 5.0.1
+URL: https://github.com/tierneyn/visdat
+BugReports: https://github.com/tierneyn/visdat/issues
