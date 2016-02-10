@@ -85,7 +85,7 @@ grid_partial_plot <- function(x,
                    linetype = "dashed",
                    alpha = 0.75) +
         labs(x = paste("Variable Values for", var_lab),
-             y = "Values")
+             y = "Predicted")
     } # end else
 
   } # close loop
