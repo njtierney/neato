@@ -51,7 +51,9 @@ gg_partial_plot <- function(x,
                aes(yintercept = mean),
                colour = "red",
                linetype = "dashed",
-               alpha = 0.75)
+               alpha = 0.75) +
+    labs(x = "Variable Values",
+         y = "Model Predicted Values")
 
 } # end function
 
