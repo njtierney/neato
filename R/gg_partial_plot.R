@@ -19,8 +19,7 @@
 #' @export
 
 gg_partial_plot <- function(x,
-                            vars,
-                            ...){
+                            vars){
 
   df_box <- list("vector", length(vars))
 

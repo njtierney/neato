@@ -62,17 +62,15 @@
 #'
 #' @seealso \url{https://github.com/dgrtwo/broom}
 #'
-#' @import dplyr
-#'
 #' @export
-importance_table <- function(x, ...) UseMethod("importance_table")
+importance_table <- function(x) UseMethod("importance_table")
 
 
 #' @export
-importance_table.NULL <- function(x,...) NULL
+importance_table.NULL <- function(x) NULL
 
 #' @export
-importance_table.default <- function(x,...) {
+importance_table.default <- function(x) {
 
     stop("alas, importance_table does not know how to deal with data of class ", class(x), call. = FALSE)
 
@@ -83,7 +81,7 @@ importance_table.default <- function(x,...) {
 #========
 
 #' @export
-importance_table.rpart <- function(x, ...){
+importance_table.rpart <- function(x){
 
     # Some trees are stumps, we need to skip those that are NULL (stumps)
     # so here we say, "If variable importance is NOT NULL, do the following"
@@ -118,7 +116,7 @@ importance_table.rpart <- function(x, ...){
 #=====
 
 #' @export
-importance_table.gbm <- function(x, ...){
+importance_table.gbm <- function(x){
 
     x <-
       x$contributions %>%
@@ -137,7 +135,7 @@ importance_table.gbm <- function(x, ...){
 #================
 
 #' @export
-importance_table.randomForest <- function(x, ...){
+importance_table.randomForest <- function(x){
 
       # get the names of the variables used
       variable <- importance(x) %>%

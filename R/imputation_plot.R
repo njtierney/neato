@@ -24,8 +24,6 @@
 #'    # show the density
 #'    plot1
 #'
-#' @import dplyr
-#'
 #' @export
 imputation_plot <- function(mice.object,
                             vars,

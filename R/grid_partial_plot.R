@@ -7,9 +7,6 @@
 #' @param x a gbm.step object
 #' @param vars a character vector of the variables you want to plot
 #' @param factors a character vector of those variables which are factors
-
-#' @import ggplot2
-#' @import gridExtra
 #'
 #' @export
 
