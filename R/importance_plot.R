@@ -10,9 +10,10 @@
 #' @return a ggplot plot of the variable importance
 #'
 #' @examples
-#' turn a fitted object into a data_frame
 #'
-#'  \code{rpart} object
+#'  # an rpart object
+#'  library(rpart)
+#'  library(neato)
 #' fit.rpart <- rpart(Kyphosis ~ Age + Number + Start, data = kyphosis)
 #'
 #' importance_plot(fit.rpart)
@@ -21,7 +22,7 @@
 #'
 #' fit.rpart %>% importance_plot
 #'
-#'  \code{randomForest} object
+#'  # a randomForest object
 #'
 #'  set.seed(131)
 #'   ozone.rf <- randomForest(Ozone ~ ., data=airquality, mtry=3,
@@ -37,8 +38,6 @@
 #'   # now plot it
 #'
 #'   importance_plot(ozone.rf)
-#'
-#' @import dplyr
 #'
 #' @export
 importance_plot <- function(x){
