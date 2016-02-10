@@ -6,6 +6,9 @@
 \usage{
 \method{rss}{randomForest}(x)
 }
+\arguments{
+\item{x}{A fitted randomForest model}
+}
 \description{
 Random Forest #
 }

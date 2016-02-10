@@ -6,6 +6,11 @@
 \usage{
 get_partial_dependence(x, var)
 }
+\arguments{
+\item{x}{a gbm.step object}
+
+\item{var}{a set of variables you want to retrieve partial dependence for}
+}
 \description{
 : Some code that returns the partial dependence values for a given set of variables for a gbm.step model. In the future this function will work.
 }

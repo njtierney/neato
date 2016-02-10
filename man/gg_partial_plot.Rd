@@ -4,7 +4,7 @@
 \alias{gg_partial_plot}
 \title{gg_partial_plot}
 \usage{
-gg_partial_plot(x, vars, ...)
+gg_partial_plot(x, vars)
 }
 \arguments{
 \item{x}{The GBM model to be used}

@@ -20,9 +20,10 @@ takes an `rpart` or `gbm.step` fitted object and makes a plot of variable
 importance
 }
 \examples{
-turn a fitted object into a data_frame
 
- \\code{rpart} object
+ # an rpart object
+ library(rpart)
+ library(neato)
 fit.rpart <- rpart(Kyphosis ~ Age + Number + Start, data = kyphosis)
 
 importance_plot(fit.rpart)
@@ -31,7 +32,7 @@ importance_plot(fit.rpart)
 
 fit.rpart \%>\% importance_plot
 
- \\code{randomForest} object
+ # a randomForest object
 
  set.seed(131)
   ozone.rf <- randomForest(Ozone ~ ., data=airquality, mtry=3,

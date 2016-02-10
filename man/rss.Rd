@@ -7,7 +7,7 @@
 rss(x)
 }
 \arguments{
-\item{x}{A fitted decision tree model - either `rpart`, `gbm` or `randomForest`.}
+\item{x}{A fitted rpart, gbm, or rf model}
 }
 \value{
 The Residuals Sums of Squares (RSS)  for the models `rpart`, `gbm.step`, and `randomForest`.

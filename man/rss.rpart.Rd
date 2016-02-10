@@ -6,6 +6,9 @@
 \usage{
 \method{rss}{rpart}(x)
 }
+\arguments{
+\item{x}{A fitted rpart model}
+}
 \description{
 Classification and Regression Tree #
 }

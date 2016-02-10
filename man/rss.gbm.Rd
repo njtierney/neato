@@ -6,6 +6,9 @@
 \usage{
 \method{rss}{gbm}(x)
 }
+\arguments{
+\item{x}{A fitted gbm.step model}
+}
 \description{
 Boosted Regression Tree #
 }

@@ -7,7 +7,7 @@
 gbm_plot(x)
 }
 \arguments{
-\item{gbm.step.oject}{A gbm.step object to be plotted}
+\item{x}{a gbm.step object to be plotted}
 }
 \value{
 A ggplot2 plot
@@ -23,32 +23,5 @@ NB:
 This currently only works for gbm.step functions. In the
 future more features will be added so that it works for many
 decision trees.
-}
-\examples{
-
-\\code{gbm.step} object
-fit.gbm.step <- gbm.step(data = iris,
-                         gbm.x = c(2:5),
-                         gbm.y = 1,
-                         tree.complexity = 2,
-                         family = "gaussian",
-                         learning.rate = 0.01,
-                         bag.fraction = 0.5)
-
-gbm_plot(fit.gbm.step)
-
-# with piping
-fit.gbm.step \%>\% plot_gbm.step
-
-Unfortunately it cannot yet run a \\code{gbm} object:
-\dontrun{
-
-gbm.fit <- gbm(Sepal.Width ~ .,
-               distribution = "gaussian",
-               data = iris)
-
-gbm_plot(gbm.fit)
-}
-
 }
 

@@ -10,9 +10,9 @@ ggplot_missing(x)
 \item{x}{a data frame}
 }
 \value{
-A ggplot of the missing data
+A ggplot of the missing data.
 }
 \description{
-A function that plots missing data in ggplot
+A function that plots missing data in ggplot. For a more updated version, see `vis_miss` from visdat - github.com/tierneyn/visdat
 }
 
