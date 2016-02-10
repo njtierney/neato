@@ -2,7 +2,6 @@
 #'
 #' @description A function that gives returns the RSS of a decision tree model.
 #'
-#' @param x A fitted decision tree model - either `rpart`, `gbm` or `randomForest`.
 #'
 #' @return The Residuals Sums of Squares (RSS)  for the models `rpart`, `gbm.step`, and `randomForest`.
 #'
@@ -16,6 +15,7 @@
 #'
 #' rss(fit.rpart)
 #'
+#' @param x A fitted rpart, gbm, or rf model
 #' @export
 
 #=======================#
@@ -31,7 +31,7 @@ rss <- function(x){
 #=====================================#
 #' Classification and Regression Tree #
 #=====================================#
-
+#' @param x A fitted rpart model
 #' @export
 rss.rpart <- function(x){
 
@@ -42,7 +42,7 @@ rss.rpart <- function(x){
 #==========================#
 #' Boosted Regression Tree #
 #==========================#
-
+#' @param x A fitted gbm.step model
 #' @export
 rss.gbm <- function(x){
 
@@ -52,6 +52,7 @@ rss.gbm <- function(x){
 #================#
 #' Random Forest #
 #================#
+#' @param x A fitted randomForest model
 #' @export
 rss.randomForest <- function(x){
 
