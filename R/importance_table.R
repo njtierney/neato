@@ -158,6 +158,22 @@ importance_table.randomForest <- function(x){
 }
 
 
+#============= caret
+
+#' @export
+
+importance_table.train <- function(x){
+
+  varImp(x)$importance %>%
+    data.frame(variable = row.names(.),
+               importance = .,
+               row.names = NULL) %>%
+    rename(importance = Overall) %>%
+    as_data_frame
+
+}
+
+
 # future code for gbm objects, not gbm.step...
 ## new method for gbm to get importance value for .gbm methods (not gbm.step)
 #
