@@ -55,8 +55,8 @@ importance_plot <- function(x){
                           y = reorder(variable,
                                       importance))) +
       ggplot2::geom_point() +
-      ggplot2::labs(x = "Variables",
-                    y = "Importance Score")
+      ggplot2::labs(x = "Importance Score",
+                    y = "Variables")
 
   } else if ("randomForest" %in% class(x)) {
 
@@ -71,8 +71,8 @@ importance_plot <- function(x){
       ggplot2::facet_wrap(~ variable.1,
                           scales = "free") +
       ggplot2::theme(axis.text.x = element_text(angle = 45)) +
-      ggplot2::labs(x = "Variables",
-                    y = "Importance Score")
+      ggplot2::labs(x = "Importance Score",
+                    y = "Variables")
 
 
   } else if (!("imp_tbl" %in% class(x))) {
@@ -85,8 +85,8 @@ importance_plot <- function(x){
                         y = reorder(variable,
                                     importance))) +
     ggplot2::geom_point() +
-      ggplot2::labs(x = "Variables",
-                    y = "Importance Score")
+      ggplot2::labs(x = "Importance Score",
+                    y = "Variables")
 
 
   } # end ifelse
