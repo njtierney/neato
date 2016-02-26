@@ -70,7 +70,10 @@ importance_plot <- function(x){
       ggplot2::geom_point() +
       ggplot2::facet_wrap(~ variable.1,
                           scales = "free") +
-      ggplot2::theme(axis.text.x = element_text(angle = 45))
+      ggplot2::theme(axis.text.x = element_text(angle = 45)) +
+      ggplot2::labs(x = "Variables",
+                    y = "Importance Score")
+
 
   } else if (!("imp_tbl" %in% class(x))) {
 
@@ -81,7 +84,10 @@ importance_plot <- function(x){
                         # make sure the plot is ordered by most important
                         y = reorder(variable,
                                     importance))) +
-    ggplot2::geom_point()
+    ggplot2::geom_point() +
+      ggplot2::labs(x = "Variables",
+                    y = "Importance Score")
+
 
   } # end ifelse
 
