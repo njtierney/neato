@@ -49,14 +49,11 @@ importance_plot <- function(x){
   if ("imp_tbl" %in% class(x)){
 
     x %>%
-      # make sure the plot is ordered by most important
-      transform(.,
-                variable = reorder(variable,
-                                   importance)) %>%
-      # plot them!
       ggplot2::ggplot(data = .,
              ggplot2::aes(x = importance,
-                          y = variable)) +
+                          # make sure the plot is ordered by most important
+                          y = reorder(variable,
+                                      importance))) +
       ggplot2::geom_point() +
       ggplot2::labs(x = "Variables",
                     y = "Importance Score")
@@ -65,13 +62,11 @@ importance_plot <- function(x){
 
     importance_table(x) %>%
       tidyr::gather(variable,
-             value) %>%
-      transform(.,
-                variable = reorder(variable,
-                                   value)) %>%
+                    value) %>%
       ggplot2::ggplot(data = .,
                       ggplot2::aes(x = value,
-                                   y = variable)) +
+                                   y = reorder(variable,
+                                               importance))) +
       ggplot2::geom_point() +
       ggplot2::facet_wrap(~ variable.1,
                           scales = "free") +
@@ -81,14 +76,11 @@ importance_plot <- function(x){
 
   x %>%
   importance_table %>%
-    # make sure the plot is ordered by most important
-    transform(.,
-              variable=reorder(variable,
-                               importance)) %>%
-    # plot them!
     ggplot2::ggplot(data = .,
            ggplot2::aes(x = importance,
-                        y = variable)) +
+                        # make sure the plot is ordered by most important
+                        y = reorder(variable,
+                                    importance))) +
     ggplot2::geom_point()
 
   } # end ifelse

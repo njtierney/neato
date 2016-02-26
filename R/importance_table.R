@@ -164,12 +164,18 @@ importance_table.randomForest <- function(x){
 
 importance_table.train <- function(x){
 
+  x <-
   varImp(x)$importance %>%
     data.frame(variable = row.names(.),
                importance = .,
                row.names = NULL) %>%
     rename(importance = Overall) %>%
     as_data_frame
+
+  res <- x
+  class(res) <- c("imp_tbl", class(res))
+  return(res)
+
 
 }
 
