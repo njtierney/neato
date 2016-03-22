@@ -74,6 +74,7 @@ importance_plot <- function(x){
       ggplot2::labs(x = "Importance Score",
                     y = "Variables")
 
+    # need to make a way for randomForest to generalise across different "importance" measures - meanGiniIncrease, NodePurity...etc.
 
   } else if (!("imp_tbl" %in% class(x))) {
 

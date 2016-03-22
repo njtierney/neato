@@ -21,7 +21,7 @@ get_partial_dependence <- function(x, var){
                               return.grid = TRUE)
 
   # make a dataframe, which contains the observed calues, and the fitted function values, and then adds another column containing the variable name.
-  df <- data.frame(value = response_matrix[ , 1],
+  df <- data.frame(value = as.numeric(response_matrix[ , 1]),
                    fitted_function = response_matrix[ , 2]) %>%
     mutate(variable = x$var.names[i])
 
