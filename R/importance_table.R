@@ -65,7 +65,6 @@
 #' @export
 importance_table <- function(x) UseMethod("importance_table")
 
-
 #' @export
 importance_table.NULL <- function(x) NULL
 
@@ -95,7 +94,8 @@ importance_table.rpart <- function(x){
                  importance = as.vector(x$variable.importance),
                  row.names = NULL) %>%
       select(variable,
-             importance)
+             importance) %>%
+      as_data_frame()
 
     } else {
 
@@ -103,12 +103,15 @@ importance_table.rpart <- function(x){
 
       x <- data.frame(variable = NULL,
                       importance = NULL,
-                      row.names = NULL)
+                      row.names = NULL) %>%
+        as_data_frame()
     } # end else
 
-    res <- x
-    class(res) <- c("imp_tbl", class(res))
-    return(res)
+  # no need to modify the class of the object.
+    # res <- x
+    # class(res) <- c("imp_tbl", class(res))
+    # return(res)
+  return(x)
 
 }
 #=====
@@ -124,11 +127,14 @@ importance_table.gbm <- function(x){
         as_data_frame %>%
         # rename the variables
         rename(variable = var,
-               importance = rel.inf)
+               importance = rel.inf) %>%
+      as_data_frame()
 
-    res <- x
-    class(res) <- c("imp_tbl", class(res))
-    return(res)
+    # no need to return this info
+    # res <- x
+    # class(res) <- c("imp_tbl", class(res))
+    # return(res)
+    return(x)
 }
 #================
 # random forests
@@ -150,10 +156,11 @@ importance_table.randomForest <- function(x){
                      pt1) %>%
         as_data_frame
 
-      res <- x
-      class(res) <- c("imp_tbl", class(res))
-      return(res)
-
+      # no need to return this info
+      # res <- x
+      # class(res) <- c("imp_tbl", class(res))
+      # return(res)
+      return(x)
 
 }
 
@@ -170,11 +177,13 @@ importance_table.train <- function(x){
                importance = .,
                row.names = NULL) %>%
     rename(importance = Overall) %>%
-    as_data_frame
+    as_data_frame()
 
-  res <- x
-  class(res) <- c("imp_tbl", class(res))
-  return(res)
+  # no need to return this info
+  # res <- x
+  # class(res) <- c("imp_tbl", class(res))
+  # return(res)
+  return(x)
 
 
 }

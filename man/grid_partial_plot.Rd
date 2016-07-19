@@ -4,7 +4,7 @@
 \alias{grid_partial_plot}
 \title{grid_partial_plot}
 \usage{
-grid_partial_plot(x, vars, factors)
+grid_partial_plot(x, ...)
 }
 \arguments{
 \item{x}{a gbm.step object}

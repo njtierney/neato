@@ -1,6 +1,6 @@
 #' ggplot_missing
 #'
-#' @description A function that plots missing data in ggplot. For a more updated version, see `vis_miss` from visdat - github.com/tierneyn/visdat
+#' @description A function that plots missing data in ggplot. For a more updated version, see `vis_miss` from visdat - github.com/njtierney/visdat
 #'
 #' @param x a data frame
 #'

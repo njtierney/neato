@@ -10,9 +10,11 @@
 #'
 #' @export
 
-grid_partial_plot <- function(x,
-                              vars,
-                              factors){
+grid_partial_plot <- function(x, ...) UseMethod("grid_partial_plot")
+
+grid_partial_plot.default <- function(x,
+                                      vars,
+                                      factors){
 
   df_box <- list("vector", length(vars))
 
@@ -100,3 +102,12 @@ grid_partial_plot <- function(x,
 
 
 } # end of function
+
+grid_partial_plot.train <- function(x,
+                                    vars,
+                                    factors){
+
+
+
+
+} # end function

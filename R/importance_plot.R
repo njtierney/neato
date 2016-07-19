@@ -2,8 +2,7 @@
 #'
 #' \code{importance_plot} make a graph of variable importance
 #'
-#' takes an `rpart` or `gbm.step` fitted object and makes a plot of variable
-#' importance
+#' takes an `rpart` or `gbm.step` fitted object and makes a plot of variable importance
 #'
 #' @param x is an rpart or gbm.step object
 #'
@@ -40,56 +39,47 @@
 #'   importance_plot(ozone.rf)
 #'
 #' @export
-importance_plot <- function(x){
+#'
+importance_plot <- function(x) UseMethod("importance_plot")
 
-  # this is a plot to make it easier to get the interactions out into a table
+#' @export
+importance_plot.default <- function(x){
 
-  # this function takes an importance_table object and then
+  x %>%
+    importance_table %>%
+    ggplot2::ggplot(data = .,
+                    ggplot2::aes(x = importance,
+                                 # make sure the plot is ordered by most important
+                                 y = reorder(variable,
+                                             importance))) +
+    # ggplot2::geom_point() +
+    ggalt::geom_lollipop(horizontal = TRUE,
+                         point.size = 2) +
+    ggplot2::labs(x = "Importance Score",
+                  y = "Variables")
 
-  if ("imp_tbl" %in% class(x)){
+} # end function
 
-    x %>%
-      ggplot2::ggplot(data = .,
-             ggplot2::aes(x = importance,
-                          # make sure the plot is ordered by most important
-                          y = reorder(variable,
-                                      importance))) +
-      ggplot2::geom_point() +
-      ggplot2::labs(x = "Importance Score",
-                    y = "Variables")
+#' @export
+importance_plot.randomForest <- function(x){
 
-  } else if ("randomForest" %in% class(x)) {
-
-    importance_table(x) %>%
-      tidyr::gather(variable,
-                    value) %>%
-      ggplot2::ggplot(data = .,
-                      ggplot2::aes(x = value,
-                                   y = reorder(variable,
-                                               importance))) +
-      ggplot2::geom_point() +
-      ggplot2::facet_wrap(~ variable.1,
-                          scales = "free") +
+  importance_table(x) %>%
+    tidyr::gather(variable,
+                  value) %>%
+    ggplot2::ggplot(data = .,
+                    ggplot2::aes(x = value,
+                                 y = reorder(variable,
+                                             importance))) +
+      # ggplot2::geom_point() +
+      ggalt::geom_lollipop(horizontal = TRUE,
+                           point.size = 2)
+    ggplot2::facet_wrap(~ variable.1,
+                        scales = "free") +
       ggplot2::theme(axis.text.x = element_text(angle = 45)) +
       ggplot2::labs(x = "Importance Score",
                     y = "Variables")
 
     # need to make a way for randomForest to generalise across different "importance" measures - meanGiniIncrease, NodePurity...etc.
 
-  } else if (!("imp_tbl" %in% class(x))) {
-
-  x %>%
-  importance_table %>%
-    ggplot2::ggplot(data = .,
-           ggplot2::aes(x = importance,
-                        # make sure the plot is ordered by most important
-                        y = reorder(variable,
-                                    importance))) +
-    ggplot2::geom_point() +
-      ggplot2::labs(x = "Importance Score",
-                    y = "Variables")
-
-
-  } # end ifelse
-
 } # end function
+

@@ -4,7 +4,7 @@
 \alias{get_partial_dependence}
 \title{get_partial_dependence}
 \usage{
-get_partial_dependence(x, var)
+get_partial_dependence(x, ...)
 }
 \arguments{
 \item{x}{a gbm.step object}

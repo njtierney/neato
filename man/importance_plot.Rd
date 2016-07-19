@@ -16,8 +16,7 @@ a ggplot plot of the variable importance
 \code{importance_plot} make a graph of variable importance
 }
 \details{
-takes an `rpart` or `gbm.step` fitted object and makes a plot of variable
-importance
+takes an `rpart` or `gbm.step` fitted object and makes a plot of variable importance
 }
 \examples{
 

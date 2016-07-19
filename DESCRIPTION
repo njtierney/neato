@@ -1,7 +1,7 @@
 Package: neato
 Type: Package
 Title: Various Useful Functions That I Repeatedly Use
-Version: 0.0.1.9001
+Version: 0.0.2.900
 Date: 2015-03-06
 Authors@R: person("Nicholas", "Tierney", email = "nicholas.tierney@gmail.com",
   role = c("aut", "cre"))
@@ -17,11 +17,12 @@ Imports:
     ggplot2,
     gbm,
     tidyr,
-    gridExtra
+    gridExtra,
+    ggalt
 Suggests:
     knitr,
     testthat
 VignetteBuilder: knitr
-RoxygenNote: 5.0.1.9000
+RoxygenNote: 5.0.1
 URL: https://github.com/tierneyn/visdat
 BugReports: https://github.com/tierneyn/visdat/issues

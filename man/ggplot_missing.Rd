@@ -13,6 +13,6 @@ ggplot_missing(x)
 A ggplot of the missing data.
 }
 \description{
-A function that plots missing data in ggplot. For a more updated version, see `vis_miss` from visdat - github.com/tierneyn/visdat
+A function that plots missing data in ggplot. For a more updated version, see `vis_miss` from visdat - github.com/njtierney/visdat
 }
 
